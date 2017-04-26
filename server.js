@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT
-const languageRegEx = /^([^,]*),.*$/
+const languageRegEx = /^([^,]*),?.*$/
 const softwareRegEx = /.*\((.*;[^\(]*)\).*/
 
 app.get('/', function (req, res) {
