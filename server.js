@@ -1,5 +1,5 @@
-var express = require('express')
-var app = express()
+const express = require('express')
+const app = express()
 const port = process.env.PORT
 const languageRegEx = /^([^,]*),.*$/
 const softwareRegEx = /.*\((.*;[^\(]*)\).*/
@@ -13,6 +13,14 @@ app.get('/api/whoami', (req, res) => {
     'ipaddress': req.header('x-forwarded-for'),
     'language': languageRegEx.exec(req.header('accept-language'))[1],
     'software': softwareRegEx.exec(req.header('user-agent'))[1]
+  })
+})
+
+app.get('/api/whoami/raw', (req, res) => {
+  res.send({
+    'ipaddress': req.header('x-forwarded-for'),
+    'language': req.header('accept-language'),
+    'software': req.header('user-agent')
   })
 })
 
